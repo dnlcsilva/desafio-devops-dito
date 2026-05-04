@@ -18,8 +18,13 @@ Dessa forma, o time de desenvolvimento consegue validar mudanças em staging, ma
 
 A API é distribuída em múltiplas Availability Zones, com múltiplas réplicas e balanceamento via ALB, garantindo tolerância a falhas de zona.
 
-## Diagrama
+O Amazon ECR fica na conta compartilhada e armazena as imagens versionadas e assinadas da aplicação.
 
+Tanto o cluster de staging quanto o cluster de production fazem pull das imagens a partir desse ECR compartilhado. O acesso é controlado por IAM cross-account, permitindo que apenas as roles dos nodes ou workloads autorizados consigam consumir as imagens.
+
+A promoção entre ambientes não reconstrói a imagem. A mesma imagem validada em staging é promovida para production por digest, garantindo imutabilidade e consistência entre ambientes.
+
+## Diagrama
 
 ```mermaid
 flowchart TB
