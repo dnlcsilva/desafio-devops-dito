@@ -20,6 +20,7 @@ A API é distribuída em múltiplas Availability Zones, com múltiplas réplicas
 
 ## Diagrama
 
+
 ```mermaid
 flowchart TB
     user[Usuários / Clientes] --> r53[Route 53]
@@ -106,4 +107,7 @@ flowchart TB
     infra --> staging
     infra --> production
     infra --> shared
+
+    ecr -->|pull image| podstg
+    ecr -->|pull image| podsprod
 ```
