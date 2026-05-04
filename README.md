@@ -69,18 +69,6 @@ Recomendação:
 
 Essa separação reduz o blast radius e evita que permissões ou falhas em staging afetem produção.
 
-## Fluxo de alto nível
-
-1. Desenvolvedor abre Pull Request no repositório da aplicação.
-2. Pipeline executa testes, build, scan de segurança e geração de SBOM.
-3. Imagem é enviada para o Amazon ECR.
-4. Imagem é assinada com Cosign.
-5. Manifesto de staging é atualizado no repositório GitOps.
-6. FluxCD sincroniza staging automaticamente.
-7. Após validação, é aberto Pull Request promovendo a mesma imagem para production.
-8. FluxCD aplica a alteração em production.
-9. Kyverno valida se a imagem está assinada e se vem de registry autorizado.
-10. Caso a imagem não atenda às políticas, o deploy é bloqueado.
 
 ## Decisão principal
 
